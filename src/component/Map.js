@@ -1,5 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
+import Weather from './Weather';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Button, Row, Col,Card } from 'react-bootstrap';
 class Map extends React.Component {
@@ -9,7 +10,9 @@ class Map extends React.Component {
             cityData: '',
             cityName: '',
             show:false,
-            error:''
+            error:'',
+            lat:0,
+            lon:0
         }
     }
     setCityName = (e) => {
@@ -28,9 +31,11 @@ class Map extends React.Component {
             let res=cities;
             this.setState({
                 cityData: res.data[0],
-                show:true
+                show:true,
+                lat:res.data[0].lat,
+                lon:res.data[0].lon
             }); 
-            console.log(this.state.cityData[0]);
+            console.log(this.state.lat);
         }
         catch (err){
             this.setState({
@@ -75,8 +80,10 @@ class Map extends React.Component {
                             
                         </Card.Footer>
                     </Card>
+                    <Weather functionCall={this.state.show} cityName={this.state.cityName} lat={this.state.lat} lon={this.state.lon}/>
                     </Col>
     }
+                
                 <h5>{this.state.error}</h5>
                 </Row>
             </>
