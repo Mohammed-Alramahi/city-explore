@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Map from './component/Map';
+<<<<<<< HEAD
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Axios from 'axios';
 import { Form, Button, Row, Col,Card } from 'react-bootstrap';
@@ -90,6 +91,15 @@ class App extends React.Component {
       </>
     );
   }
+=======
+import Weather from './component/Weather';
+function App() {
+  return (
+    <div className="App">
+      <Map />
+    </div>
+  );
+>>>>>>> 0555dd42d88e100269a99f3aa0cabb8511c52c4f
 }
 
   export default App;
