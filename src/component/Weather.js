@@ -8,9 +8,11 @@ class Weather extends React.Component {
     render() {
         return (<React.Fragment>
              <ul>
+             {this.props.show && <h1>Forecast:</h1>}
                 {
-                    this.props.show && this.props.weatherData.map(item=>{
-                         return (<li>date: {item.date}, description: {item.description}</li>)
+                    this.props.show && this.props.weatherData.map((item,day)=>{
+                       if(day<3)
+                        return (<li key={day}><h5>day:{day+1} date: {item.date}, description: {item.description}</h5></li>)
                     })
                 }
                 </ul>

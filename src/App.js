@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Map from './component/Map';
-<<<<<<< HEAD
+import Movie from './component/Movie';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Axios from 'axios';
 import { Form, Button, Row, Col,Card } from 'react-bootstrap';
@@ -16,7 +16,8 @@ class App extends React.Component {
       lan:0,
       lat:0,
       error: '',
-      weatherData:[]
+      weatherData:[],
+      movieData:[]
     }
   }
   setCityName = (e) => {
@@ -40,6 +41,7 @@ class App extends React.Component {
         lon:res.data[0].lon,
       });
       this.setWeatherData();
+      this.setMovieData();
     }
     catch (err) {
       this.setState({
@@ -50,25 +52,24 @@ class App extends React.Component {
   
   }
   setWeatherData=async()=>{
-  let appHost=process.env.REACT_APP_HOST;
-  let requestWeatherApi= await Axios.get(`http://localhost:3300/weather?q=${this.state.cityNameQuery}&lon=${this.state.lon}&lat=${this.state.lat}`);
+  let APPHOST=process.env.REACT_APP_SERVER;
+  let requestWeatherApi= await Axios.get(`${APPHOST}/weather?q=${this.state.cityNameQuery}&lon=${this.state.lon}&lat=${this.state.lat}`);
   let res= requestWeatherApi.data;
   this.setState({
    ...this.state,weatherData:res
   });
-  /*  this.setState((prev)=>{
-    let newRes = {
-      day1:res[0],
-      day2:res[1],
-      day3:res[2],
-      weatherData:res
-     }
-     this.setState({ ...prev,newRes})
-  }) */
-    this.setState()
-   console.log(this.state.weatherData);
-  }
 
+  }
+setMovieData=async()=>{
+  let APPHOST=process.env.REACT_APP_SERVER;
+  let requestMovieApi= await Axios.get(`${APPHOST}/movies?q=${this.state.cityNameQuery}`);
+  let res=requestMovieApi.data;
+  this.setState({
+    ...this.state,      
+    movieData:res
+   });
+   console.log(res);
+}
 
   render() {
     return (
@@ -87,19 +88,11 @@ class App extends React.Component {
           </Col>
           <Map show={this.state.show} cityData={this.state.cityData}/>
           <Weather show={this.state.show} weatherData={this.state.weatherData}/>
+          <Movie show={this.state.show} movieData={this.state.movieData}/>
         </Row>
       </>
     );
   }
-=======
-import Weather from './component/Weather';
-function App() {
-  return (
-    <div className="App">
-      <Map />
-    </div>
-  );
->>>>>>> 0555dd42d88e100269a99f3aa0cabb8511c52c4f
 }
 
   export default App;
