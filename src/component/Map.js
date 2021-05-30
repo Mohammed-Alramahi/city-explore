@@ -23,7 +23,6 @@ class Map extends React.Component {
                             
                         </Card.Footer>
                     </Card>
-                    <Weather functionCall={this.state.show} cityName={this.state.cityName} lat={this.state.lat} lon={this.state.lon}/>
                     </Col>
                 </Row>
             }
