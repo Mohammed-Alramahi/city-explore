@@ -14,7 +14,7 @@ class Movies extends React.Component {
                 {
                     this.props.show && this.props.movieData.map((item, count) => {
                         if (count < 10)
-                            return <Movie title={item.title} overview={item.overview} key={count} date={item.released_on} />
+                            return <Movie title={item.title} image={item.image} overview={item.overview} key={count} date={item.released_on} />
                     })
                 }
             </div>
